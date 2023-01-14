@@ -34,6 +34,9 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to the application." });
 });
 
+// routes
+require("./app/routes/movies.routes")(app);
+
 // set port
 const PORT = process.env.PORT || 8080;
 // listen for requests
