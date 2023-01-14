@@ -4,8 +4,8 @@ const cors = require("cors");
 
 const app = express();
 
+// cors 
 let corsOptions = { origin: "http://localhost:8081" };
-
 app.use(cors(corsOptions));
 
 // parse requests of content-type:
@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
 });
 
 // routes
-require("./app/routes/movies.routes")(app);
+require("./app/routes/movie.routes")(app);
 
 // set port
 const PORT = process.env.PORT || 8080;

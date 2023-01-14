@@ -7,7 +7,7 @@ exports.create = (req, res) => {
   if (!req.body.title) {
     res.status(400).send({ message: "Content cannot be empty!" });
     return;
-  }
+  };
   // create a Movie
   const movie = new Movie({
     title: req.body.title,
@@ -43,7 +43,9 @@ exports.findOne = (req, res) => {
     .then(data => {
       if (!data) {
         res.status(404).send({ message: `Not found Movie with id=${id}.` });
-      } else res.send(data);
+      } else { 
+        res.send(data);
+      };
     })
     .catch(err => {
       res
@@ -56,7 +58,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({ message: "Data to update cannot be empty!" });
-  }
+  };
 
   const id = req.params.id;
 
@@ -64,7 +66,9 @@ exports.update = (req, res) => {
     .then(data => {
       if (!data) {
         res.status(404).send({ message: `Cannot update Movie with id=${id}. Movie was not found.` });
-      } else res.send({ message: "Movie was updated successfully!" });
+      } else {
+        res.send({ message: "Movie was updated successfully!" });
+      };
     })
     .catch(err => {
       res.status(500).send({ message: `Error updating Movie with id=${id}.` });
@@ -81,7 +85,7 @@ exports.delete = (req, res) => {
         res.status(404).send({ message: `Cannot delete Movie with id=${id}. Movie was not found.` });
       } else {
         res.send({ message: "Movie was deleted successfully!" });
-      }
+      };
     })
     .catch(err => {
       res.status(500).send({ message: `Could not delete Movie with id=${id}.` });
@@ -99,7 +103,7 @@ exports.deleteAll = (req, res) => {
     });
 };
 
-// Find all watched Movies
+// find all watched Movies
 exports.findAllWatched = (req, res) => {
   Movie.find({ watched: true })
     .then(data => { res.send(data); })

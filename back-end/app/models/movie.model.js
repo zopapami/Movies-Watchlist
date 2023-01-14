@@ -13,7 +13,7 @@ module.exports = mongoose => {
     object.id = _id;
     return object;
   });
-
+  
   const Movie = mongoose.model("movie", schema);
   return Movie;
 };
