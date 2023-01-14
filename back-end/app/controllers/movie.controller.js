@@ -5,7 +5,7 @@ const Movie = db.movies;
 exports.create = (req, res) => {
   // validate request
   if (!req.body.title) {
-    res.status(400).send({ message: "Content can not be empty!" });
+    res.status(400).send({ message: "Content cannot be empty!" });
     return;
   }
   // create a Movie
@@ -42,20 +42,20 @@ exports.findOne = (req, res) => {
   Movie.findById(id)
     .then(data => {
       if (!data) {
-        res.status(404).send({ message: `Not found Movie with id=${id}` });
+        res.status(404).send({ message: `Not found Movie with id=${id}.` });
       } else res.send(data);
     })
     .catch(err => {
       res
         .status(500)
-        .send({ message: `Error retrieving Movie with id=${id}` });
+        .send({ message: `Error retrieving Movie with id=${id}.` });
     });
 };
 
 // update a Movie by the id in the request
 exports.update = (req, res) => {
   if (!req.body) {
-    return res.status(400).send({ message: "Data to update can not be empty!" });
+    return res.status(400).send({ message: "Data to update cannot be empty!" });
   }
 
   const id = req.params.id;
@@ -63,11 +63,11 @@ exports.update = (req, res) => {
   Movie.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then(data => {
       if (!data) {
-        res.status(404).send({ message: `Cannot update Movie with id=${id}. Maybe Movie was not found!` });
-      } else res.send({ message: "TMovie was updated successfully." });
+        res.status(404).send({ message: `Cannot update Movie with id=${id}. Movie was not found.` });
+      } else res.send({ message: "Movie was updated successfully!" });
     })
     .catch(err => {
-      res.status(500).send({ message: `Error updating Movie with id=${id}` });
+      res.status(500).send({ message: `Error updating Movie with id=${id}.` });
     });
 };
 
@@ -78,13 +78,13 @@ exports.delete = (req, res) => {
   Movie.findByIdAndRemove(id)
     .then(data => {
       if (!data) {
-        res.status(404).send({ message: `Cannot delete Movie with id=${id}. Maybe Movie was not found!` });
+        res.status(404).send({ message: `Cannot delete Movie with id=${id}. Movie was not found.` });
       } else {
         res.send({ message: "Movie was deleted successfully!" });
       }
     })
     .catch(err => {
-      res.status(500).send({ message: `Could not delete Movie with id=${id}` });
+      res.status(500).send({ message: `Could not delete Movie with id=${id}.` });
     });
 };
 
