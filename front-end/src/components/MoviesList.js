@@ -102,7 +102,7 @@ const MoviesList = () => {
         </ul>
 
         <button
-          className="m-3 btn btn-sm btn-danger"
+          className="my-3 btn btn-sm btn-danger"
           onClick={removeAllMovies}
         >
           Remove All
@@ -128,12 +128,12 @@ const MoviesList = () => {
               <label>
                 <strong>Status:</strong>
               </label>{" "}
-              {currentMovie.watched ? "Watched" : "Not yet"}
+              {currentMovie.watched ? "Watched" : "Not watched"}
             </div>
 
             <Link
               to={"/movies/" + currentMovie.id}
-              className="badge badge-warning"
+              className="mt-2 p-2 badge text-bg-warning text-decoration-none"
             >
               Edit
             </Link>
@@ -141,7 +141,7 @@ const MoviesList = () => {
         ) : (
           <div>
             <br />
-            <p>Please click on a Movie...</p>
+            <p>Please click on a Tutorial...</p>
           </div>
         )}
       </div>

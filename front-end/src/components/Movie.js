@@ -109,37 +109,38 @@ const Movie = props => {
               <label>
                 <strong>Status:</strong>
               </label>
-              {currentMovie.watched ? "Watched" : "Not yet"}
+              {currentMovie.watched ? "Watched" : "Not watched"}
             </div>
           </form>
 
           {currentMovie.watched ? (
             <button
-              className="badge badge-primary mr-2"
+              className="m-2 p-2 badge border-0 text-bg-success"
               onClick={() => updateWatched(false)}
             >
-              UnWatch
+              Watched
             </button>
           ) : (
             <button
-              className="badge badge-primary mr-2"
+              className="m-2 p-2 badge border-0 text-bg-warning"
               onClick={() => updateWatched(true)}
             >
-              Watch
+              Not Watched
             </button>
           )}
 
-          <button className="badge badge-danger mr-2" onClick={deleteMovie}>
-            Delete
-          </button>
-
           <button
             type="submit"
-            className="badge badge-success"
+            className="m-2 p-2 badge border-0 text-bg-primary"
             onClick={updateMovie}
           >
             Update
           </button>
+
+          <button className="m-2 p-2 badge border-0 text-bg-danger" onClick={deleteMovie}>
+            Delete
+          </button>
+
           <p>{message}</p>
         </div>
       ) : (
