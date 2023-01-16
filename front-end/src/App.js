@@ -7,8 +7,8 @@ import AddMovie from "./components/AddMovie.js";
 import Movie from "./components/Movie.js";
 import MoviesList from "./components/MoviesList.js";
 
-import MovieLogo from "./movie-icon.png";
-import AddSign from "./add-icon.png";
+import MovieLogo from "./img/movie-icon.png";
+import AddSign from "./img/add-icon.png";
 
 function App() {
   return (
