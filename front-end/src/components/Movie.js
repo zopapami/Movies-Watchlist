@@ -1,77 +1,76 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from "react-router-dom";
 import MovieDataService from "../services/MovieService.js";
 
-const Movie = props => {
-  const { id }= useParams();
+const Movie = (props) => {
+  const { id } = useParams();
   let navigate = useNavigate();
 
   const initialMovieState = {
     id: null,
     title: "",
     year: null,
-    watched: false
+    watched: false,
   };
   const [currentMovie, setCurrentMovie] = useState(initialMovieState);
   const [message, setMessage] = useState("");
 
-  const getMovie = id => {
+  const getMovie = (id) => {
     MovieDataService.get(id)
-      .then(response => {
+      .then((response) => {
         setCurrentMovie(response.data);
         console.log(response.data);
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   };
 
   useEffect(() => {
-    if (id)
-      getMovie(id);
+    if (id) getMovie(id);
   }, [id]);
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
     setCurrentMovie({ ...currentMovie, [name]: value });
   };
 
-  const updateWatched = status => {
+  const updateWatched = (status) => {
     var data = {
       id: currentMovie.id,
       title: currentMovie.title,
       year: currentMovie.year,
-      watched: status
+      watched: status,
     };
 
     MovieDataService.update(currentMovie.id, data)
-      .then(response => {
+      .then((response) => {
         setCurrentMovie({ ...currentMovie, watched: status });
         console.log(response.data);
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   };
 
   const updateMovie = () => {
     MovieDataService.update(currentMovie.id, currentMovie)
-      .then(response => {
+      .then((response) => {
         console.log(response.data);
         setMessage("The movie was updated successfully!");
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   };
 
   const deleteMovie = () => {
     MovieDataService.remove(currentMovie.id)
-      .then(response => {
+      .then((response) => {
         console.log(response.data);
         navigate("/movies");
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   };
@@ -82,22 +81,22 @@ const Movie = props => {
         <div className="edit-form">
           <h4>Movie</h4>
           <form>
-            <div className="form-group">
+            <div className="form-group mb-1">
               <label htmlFor="title">Title</label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control mb-2"
                 id="title"
                 name="title"
                 value={currentMovie.title}
                 onChange={handleInputChange}
               />
             </div>
-            <div className="form-group">
+            <div className="form-group mb-1">
               <label htmlFor="year">Year</label>
               <input
                 type="number"
-                className="form-control"
+                className="form-control mb-2"
                 id="year"
                 name="year"
                 value={currentMovie.year}
@@ -109,7 +108,7 @@ const Movie = props => {
               <label>
                 <strong>Status:</strong>
               </label>
-              {currentMovie.watched ? "Watched" : "Not watched"}
+              {currentMovie.watched ? " Watched" : "  Not watched"}
             </div>
           </form>
 
@@ -137,7 +136,10 @@ const Movie = props => {
             Update
           </button>
 
-          <button className="m-2 p-2 badge border-0 text-bg-danger" onClick={deleteMovie}>
+          <button
+            className="m-2 p-2 badge border-0 text-bg-danger"
+            onClick={deleteMovie}
+          >
             Delete
           </button>
 

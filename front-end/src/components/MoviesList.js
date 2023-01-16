@@ -12,18 +12,18 @@ const MoviesList = () => {
     retrieveMovies();
   }, []);
 
-  const onChangeSearchTitle = e => {
+  const onChangeSearchTitle = (e) => {
     const searchTitle = e.target.value;
     setSearchTitle(searchTitle);
   };
 
   const retrieveMovies = () => {
     MovieDataService.getAll()
-      .then(response => {
+      .then((response) => {
         setMovies(response.data);
         console.log(response.data);
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   };
@@ -41,22 +41,22 @@ const MoviesList = () => {
 
   const removeAllMovies = () => {
     MovieDataService.removeAll()
-      .then(response => {
+      .then((response) => {
         console.log(response.data);
         refreshList();
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   };
 
   const findByTitle = () => {
     MovieDataService.findByTitle(searchTitle)
-      .then(response => {
+      .then((response) => {
         setMovies(response.data);
         console.log(response.data);
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   };
@@ -72,15 +72,9 @@ const MoviesList = () => {
             value={searchTitle}
             onChange={onChangeSearchTitle}
           />
-          <div className="input-group-append">
-            <button
-              className="btn btn-outline-secondary"
-              type="button"
-              onClick={findByTitle}
-            >
-              Search
-            </button>
-          </div>
+          <button className="btn btn-light" type="button" onClick={findByTitle}>
+            Search
+          </button>
         </div>
       </div>
       <div className="col-md-6">
@@ -141,7 +135,7 @@ const MoviesList = () => {
         ) : (
           <div>
             <br />
-            <p>Please click on a Tutorial...</p>
+            <p>Please click on a Movie...</p>
           </div>
         )}
       </div>

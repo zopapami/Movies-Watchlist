@@ -6,12 +6,12 @@ const AddMovie = () => {
     id: null,
     title: "",
     year: null,
-    watched: false
+    watched: false,
   };
   const [movie, setMovie] = useState(initialMovieState);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
     setMovie({ ...movie, [name]: value });
   };
@@ -19,21 +19,21 @@ const AddMovie = () => {
   const saveMovie = () => {
     var data = {
       title: movie.title,
-      year: movie.year
+      year: movie.year,
     };
 
     MovieDataService.create(data)
-      .then(response => {
+      .then((response) => {
         setMovie({
           id: response.data.id,
           title: response.data.title,
           year: response.data.year,
-          watched: response.data.watched
+          watched: response.data.watched,
         });
         setSubmitted(true);
         console.log(response.data);
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   };
@@ -48,17 +48,19 @@ const AddMovie = () => {
       {submitted ? (
         <div>
           <h4>You submitted successfully!</h4>
-          <button className="btn btn-success" onClick={newMovie}>
-            Add
+          <button className="btn btn-dark mt-2" onClick={newMovie}>
+            Add Movie
           </button>
         </div>
       ) : (
         <div>
           <div className="form-group">
-            <label htmlFor="title">Title</label>
+            <label className="mb-1" htmlFor="title">
+              Title
+            </label>
             <input
               type="text"
-              className="form-control"
+              className="form-control mb-3"
               id="title"
               required
               value={movie.title}
@@ -68,10 +70,12 @@ const AddMovie = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="year">Year</label>
+            <label className="mb-1" htmlFor="year">
+              Year
+            </label>
             <input
               type="number"
-              className="form-control"
+              className="form-control mb-4"
               id="year"
               required
               value={movie.year}
@@ -79,8 +83,7 @@ const AddMovie = () => {
               name="year"
             />
           </div>
-
-          <button onClick={saveMovie} className="btn btn-success">
+          <button onClick={saveMovie} className="btn btn-dark">
             Submit
           </button>
         </div>
