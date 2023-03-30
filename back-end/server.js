@@ -38,8 +38,8 @@ app.get("/", (req, res) => {
 require("./app/routes/movie.routes")(app);
 
 // set port
-const PORT = process.env.PORT || 8080;
+const port = process.env.SERVER_PORT;
 // listen for requests
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}...`);
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}...`);
 });
