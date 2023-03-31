@@ -14,6 +14,9 @@ app.use(bodyParser.json());
 // application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// dotenv
+require("dotenv").config();
+
 // connect database - mongoose
 const db = require("./app/models");
 db.mongoose
